@@ -1,8 +1,8 @@
-/+  *server
+/+  *server, primes
 /=  tile-js
   /^  octs
   /;  as-octs:mimes:html
-  /:  /===/app/hapt/js/tile
+  /:  /===/app/xeno/js/tile
   /|  /js/
       /~  ~
   ==
@@ -30,16 +30,16 @@
   [~ this]
 ++  prep
   |=  old=(unit ~)
-  ~&  'it built'
+  ~&  'X E N O T A T I O N   C O N F I R M E D'
   ^-  (quip move _this)
   =/  launcha
-    [%launch-action [%hapt /hapttile '/~hapt/js/tile.js']]
+    [%launch-action [%xeno /xenotile '/~xeno/js/tile.js']]
   :_  this
   :~
-    [ost.bol %connect / [~ /'~hapt'] %hapt]
-    [ost.bol %poke /hapt [our.bol %launch] launcha]
+    [ost.bol %connect / [~ /'~xeno'] %xeno]
+    [ost.bol %poke /xeno [our.bol %launch] launcha]
   ==
-++  peer-hapttile
+++  peer-xenotile
   |=  pax=path
   ^-  (quip move _this)
   =/  jon=json
@@ -51,7 +51,7 @@
 ++  send-tile-diff
   |=  jon=json
   ^-  (list move)
-  %+  turn  (prey:pubsub:userlib /hapttile bol)
+  %+  turn  (prey:pubsub:userlib /xenotile bol)
   |=  [=bone ^]
   [bone %diff %json jon]
 ++  send-status-diff
@@ -63,13 +63,18 @@
 ++  poke-json
   |=  jon=json
   ^+  [*(list move) +>.$]
-  ~&  'poke-json in hapt called'
+  ~&  'poke-json in xeno called'
   ~&  jon
   =/  json-map    ((om:dejs:format same) jon)
   ~&  json-map
   =.  notelist  ~[jon]
+  =+  [n=12]
+  =+  [factors=(prime-factors:primes n)]
+  ~&  n
+  ~&  factors
+  ~&  (xenotate:primes n)
   :_  +>.$  :_  ~
-  [ost.bol %wait /hapt ~2019.11.5..02.12.32..9af6]  :: stupid placeholder
+  [ost.bol %wait /xeno ~2019.11.5..02.12.32..9af6]  :: stupid placeholder
 ++  coup-helm-hi
   |=  [pax=path cop=(unit tang)]
   ~&  ["Coup received" pax]
