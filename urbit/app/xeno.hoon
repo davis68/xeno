@@ -71,6 +71,7 @@
   =+  [n=(ni:dejs:format stub)]
   =+  [factors=(prime-factors:primes n)]
   =+  [x=(xenotate:primes n)]
+  :_  this
   (send-status-diff x)
 ++  poke-handle-http-request
   %-  (require-authorization:app ost.bol move .)
