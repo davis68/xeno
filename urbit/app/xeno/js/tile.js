@@ -19228,28 +19228,30 @@
                   this.state = {
                     value: 2
                   };
+                  this.handleNumberChange = this.handleNumberChange.bind(this);
                 }
                 
                 handleNumberChange(event) {
-                  this.setState({value: event.target.value});
-                  //api.action('xeno', 'json', {notes: this.state.notes});
+                  this.setState({
+                    value: event.target.value
+                  });
+                  // now update xeno by polling gall and updating here
+                  console.log("This is the new value of field myField: " + event.target.value);
+                  api.action('xeno', 'json', {xeno: Number(this.state.value)});
+                  console.log(this.props.data);
                 };
 
                 render() {
                   return (
-                    react.createElement('div', { className: "w-100 h-100 relative"  , style: { background: '#1a1a1a' }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 23}}
-                    , react.createElement('p', { className: "gray label-regular b absolute"   , style: { left: 8, top: 4 }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 24}}, "Xeno")
-                , react.createElement('div', { className: "absolute", style: { top: 25, left: 8 }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 25}}
-                , react.createElement('form', { onSubmit: this.handleNumberChange, __self: this, __source: {fileName: _jsxFileName, lineNumber: 26}}
-                        , react.createElement('div', { className: "xeno", __self: this, __source: {fileName: _jsxFileName, lineNumber: 27}}
-                          , react.createElement('table', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 28}}, react.createElement('tr', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 28}}
-                          , react.createElement('td', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 29}}, react.createElement('input', { type: "text", style: { width: 184}, value: this.state.value, onChange: this.handleNumberChange, __self: this, __source: {fileName: _jsxFileName, lineNumber: 29}} ))
-                      ))
-                        )
-                      , react.createElement('table', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 32}}, react.createElement('tr', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 32}}
-                      , react.createElement('td', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 33}}, react.createElement('button', { type: "button", onClick: this.handleAddNote, className: "small", __self: this, __source: {fileName: _jsxFileName, lineNumber: 33}}, "Xenotate!"))
-                      ))
+                    react.createElement('div', { className: "w-100 h-100 relative"  , style: { background: '#1a1a1a' }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 29}}
+                    , react.createElement('p', { className: "gray label-regular b absolute"   , style: { left: 8, top: 4 }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 30}}, "Xeno")
+                , react.createElement('div', { className: "absolute", style: { top: 25, left: 8 }, __self: this, __source: {fileName: _jsxFileName, lineNumber: 31}}
+                , react.createElement('form', {__self: this, __source: {fileName: _jsxFileName, lineNumber: 32}}
+                      , react.createElement('div', { className: "xeno", __self: this, __source: {fileName: _jsxFileName, lineNumber: 33}}
+                        , react.createElement('input', { type: "number", style: { width: 184}, value: this.state.value, onChange: this.handleNumberChange, __self: this, __source: {fileName: _jsxFileName, lineNumber: 34}} )
+                      )
                     )
+                    , react.createElement('p', { className: "gray label-regular b absolute"   , __self: this, __source: {fileName: _jsxFileName, lineNumber: 37}}, this.props.data.xeno)
                 )
                     )
                 );

@@ -1,4 +1,4 @@
-/+  *server, primes
+/+  *server, primes, digits
 /=  tile-js
   /^  octs
   /;  as-octs:mimes:html
@@ -30,7 +30,7 @@
   [~ this]
 ++  prep
   |=  old=(unit ~)
-  ~&  'X E N O T A T I O N   C O N F I R M E D'
+  ~&  'X E N O T A T I O N   L A U N C H E D'
   ^-  (quip move _this)
   =/  launcha
     [%launch-action [%xeno /xenotile '/~xeno/js/tile.js']]
@@ -43,45 +43,35 @@
   |=  pax=path
   ^-  (quip move _this)
   =/  jon=json
-    %-  pairs:enjs:format
-    :~
-      [%status `json`s+'First starting']
-    ==
+  %-  pairs:enjs:format
+  :~
+    [%xeno `json`s+'·']
+  ==
   [[ost.bol %diff %json jon]~ this]
 ++  send-tile-diff
   |=  jon=json
   ^-  (list move)
   %+  turn  (prey:pubsub:userlib /xenotile bol)
   |=  [=bone ^]
+  ~&  jon
   [bone %diff %json jon]
 ++  send-status-diff
   |=  msg=tape
+  ~&  `json`s+(crip msg)
   %-  send-tile-diff
-  %-  pairs:enjs:format  :~
-    [%status `json`s+(crip msg)]
+  %-  pairs:enjs:format
+  :~
+    [%xeno `json`s+(crip msg)]
   ==
+  ::[ost.bol %poke /xeno [our.bol %xeno] `json`s+(crip msg)]
 ++  poke-json
   |=  jon=json
-  ^+  [*(list move) +>.$]
-  ~&  'poke-json in xeno called'
-  ~&  jon
   =/  json-map    ((om:dejs:format same) jon)
-  ~&  json-map
-  =.  notelist  ~[jon]
-  =+  [n=12]
+  =+  [stub=(~(got by json-map) %xeno)]
+  =+  [n=(ni:dejs:format stub)]
   =+  [factors=(prime-factors:primes n)]
-  ~&  n
-  ~&  factors
-  ~&  (xenotate:primes n)
-  :_  +>.$  :_  ~
-  [ost.bol %wait /xeno ~2019.11.5..02.12.32..9af6]  :: stupid placeholder
-++  coup-helm-hi
-  |=  [pax=path cop=(unit tang)]
-  ~&  ["Coup received" pax]
-  :_  this
-  ?~  cop
-    (send-status-diff "successfully found {<pax>}")
-  (send-status-diff "failure")
+  =+  [x=(xenotate:primes n)]
+  (send-status-diff x)
 ++  poke-handle-http-request
   %-  (require-authorization:app ost.bol move .)
   |=  =inbound-request:eyre
@@ -98,5 +88,4 @@
   ?:  =(name 'tile')
     [[ost.bol %http-response (js-response:app tile-js)]~ this]
   [[ost.bol %http-response not-found:app]~ this]
-::
 --
