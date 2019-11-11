@@ -34,7 +34,7 @@ export default class xenoTile extends Component {
             <input type="number" style={{ width: 184}} value={this.state.value} onChange={this.handleNumberChange} />
           </div>
         </form>
-        <p className="gray label-regular b absolute">{this.props.data.xeno}</p>
+        <p className="gray label-regular b absolute" style={{ fontsize: 32; }}>{this.props.data.xeno}</p>
     	</div>
         </div>
     );
