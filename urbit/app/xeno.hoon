@@ -30,7 +30,7 @@
   [~ this]
 ++  prep
   |=  old=(unit ~)
-  ~&  'X E N O T A T I O N   L A U N C H E D'
+  ~&  'X E N O T A T I O N   C O M M E N C E D'
   ^-  (quip move _this)
   =/  launcha
     [%launch-action [%xeno /xenotile '/~xeno/js/tile.js']]
@@ -45,6 +45,7 @@
   =/  jon=json
   %-  pairs:enjs:format
   :~
+    [%number `json`s+'2']
     [%xeno `json`s+'·']
   ==
   [[ost.bol %diff %json jon]~ this]
@@ -53,17 +54,17 @@
   ^-  (list move)
   %+  turn  (prey:pubsub:userlib /xenotile bol)
   |=  [=bone ^]
-  ~&  jon
+  ::~&  jon
   [bone %diff %json jon]
 ++  send-status-diff
-  |=  msg=tape
-  ~&  `json`s+(crip msg)
+  |=  [msg=tape num=@ud]
+  ::~&  `json`s+(crip msg)
   %-  send-tile-diff
   %-  pairs:enjs:format
   :~
+    [%number `json`s+(crip ~(rud at num))]
     [%xeno `json`s+(crip msg)]
   ==
-  ::[ost.bol %poke /xeno [our.bol %xeno] `json`s+(crip msg)]
 ++  poke-json
   |=  jon=json
   =/  json-map    ((om:dejs:format same) jon)
@@ -72,7 +73,7 @@
   =+  [factors=(prime-factors:primes n)]
   =+  [x=(xenotate:primes n)]
   :_  this
-  (send-status-diff x)
+  (send-status-diff [x n])
 ++  poke-handle-http-request
   %-  (require-authorization:app ost.bol move .)
   |=  =inbound-request:eyre
